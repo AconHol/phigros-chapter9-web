@@ -1,0 +1,55 @@
+<!doctype html>
+<html lang="zh-CN">
+<head>
+ <meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
+ <meta name="theme-color" content="#061b23"><title>穹顶孤舟 · 地图演示</title>
+ <link rel="preload" href="assets/fonts/Saira-UI.woff2" as="font" type="font/woff2" crossorigin><link rel="stylesheet" href="styles.css"><link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64'%3E%3Cpath d='M16 4h32l16 28-16 28H16L0 32z' fill='%230b2634' stroke='%239ddcef' stroke-width='2'/%3E%3C/svg%3E">
+</head>
+<body>
+<main id="viewport" aria-label="穹顶孤舟章节地图演示">
+ <div id="stage" data-ready="false">
+  <canvas id="map-canvas" aria-hidden="true"></canvas>
+  <div id="map-input" aria-label="拖动浏览地图"><div id="node-accessibility"></div></div>
+  <section id="detail" aria-label="曲目详情" aria-labelledby="song-title" hidden>
+   <div class="title-panel">
+    <svg class="title-glass" viewBox="0 0 1090 180" preserveAspectRatio="none" aria-hidden="true"><defs>
+     <linearGradient id="title-enter-gradient" gradientUnits="userSpaceOnUse"><stop offset="0" stop-color="white"/><stop offset=".125" stop-color="#f4f4f4"/><stop offset=".25" stop-color="#d7d7d7"/><stop offset=".375" stop-color="#aeaeae"/><stop offset=".5" stop-color="#808080"/><stop offset=".625" stop-color="#515151"/><stop offset=".75" stop-color="#282828"/><stop offset=".875" stop-color="#0b0b0b"/><stop offset="1" stop-color="black"/></linearGradient>
+     <mask id="title-enter-mask" maskUnits="userSpaceOnUse" maskContentUnits="userSpaceOnUse" x="-120" y="-60" width="1340" height="300" style="mask-type:luminance"><rect x="-120" y="-60" width="1340" height="300" fill="black"/></mask>
+     <pattern id="title-grid" width="204.8" height="177.362" patternUnits="userSpaceOnUse"><path d="M-102.4 0 0 177.362 102.4 0 204.8 177.362 307.2 0M-102.4 177.362 0 0 102.4 177.362 204.8 0 307.2 177.362M0 88.681H204.8M0 0H204.8M0 177.362H204.8" fill="none" stroke="#76bbd2" stroke-width="1.6" opacity=".70"/></pattern>
+     <linearGradient id="title-fade"><stop stop-color="white"/><stop offset=".57" stop-color="white"/><stop offset="1" stop-color="white" stop-opacity="0"/></linearGradient><mask id="title-mask"><rect width="1090" height="180" fill="url(#title-fade)"/></mask>
+     <linearGradient id="title-fill" x2="0" y2="1"><stop stop-color="#053646" stop-opacity=".52"/><stop offset=".49" stop-color="#032230" stop-opacity=".59"/><stop offset="1" stop-color="#175075" stop-opacity=".46"/></linearGradient>
+     <filter id="title-line-glow" x="-20%" y="-50%" width="140%" height="200%"><feGaussianBlur stdDeviation="3.8"/></filter>
+    </defs><g id="title-enter-layer" mask="url(#title-enter-mask)"><g mask="url(#title-mask)"><rect width="1090" height="180" fill="url(#title-fill)"/><rect width="1090" height="180" fill="url(#title-grid)"/><path d="M0 2H1090M0 178H1090" stroke="#66d6f5" stroke-width="7" opacity=".60" filter="url(#title-line-glow)"/><path d="M0 2H1090M0 178H1090" stroke="#9ae8ff" stroke-width="2" opacity=".80"/></g></g></svg>
+    <h1 id="song-title" tabindex="-1"></h1><p id="song-artist"></p>
+   </div>
+  </section>
+  <section id="reader" aria-label="剧情档案" aria-labelledby="archive-title" hidden>
+   <div class="archive-illustration"><img alt="" decoding="async"><svg class="archive-grid" aria-hidden="true"><path/></svg></div>
+   <div class="archive-scroll" tabindex="0" aria-label="档案正文"><h1 id="archive-title" tabindex="-1"></h1><div class="archive-text"></div></div>
+   <nav class="archive-pages" aria-label="档案分页" hidden><button data-page="previous" aria-label="上一页">‹</button><span></span><button data-page="next" aria-label="下一页">›</button></nav>
+  </section>
+  <button id="back" aria-label="复位地图" title="复位地图 R">
+   <svg viewBox="0 0 184 132" aria-hidden="true"><defs><filter id="back-glow" x="-50%" y="-70%" width="230%" height="240%"><feGaussianBlur stdDeviation="5.8"/></filter><filter id="back-halo" x="-50%" y="-70%" width="230%" height="240%"><feGaussianBlur stdDeviation="8"/></filter><filter id="back-core" x="-10%" y="-10%" width="120%" height="120%"><feGaussianBlur stdDeviation=".75"/></filter><clipPath id="back-clip"><path d="M-12 8.18 170.92 40.71 145.43 125.5-12 103.58Z"/></clipPath><linearGradient id="back-face" x2=".8" y2="1"><stop stop-color="#00232b"/><stop offset=".58" stop-color="#010c12"/><stop offset="1" stop-color="#062630"/></linearGradient></defs>
+    <path d="M-12 8.18 170.92 40.71 145.43 125.5-12 103.58Z" fill="url(#back-face)"/>
+    <path d="M-12 8.18 170.92 40.71 145.43 125.5-12 103.58Z" fill="none" stroke="#afe0e8" stroke-width="10" opacity=".38" filter="url(#back-halo)"/>
+    <g clip-path="url(#back-clip)"><path class="back-inner" d="M-12 8.18 170.92 40.71 145.43 125.5-12 103.58Z" fill="none" stroke="#afe0e8" stroke-width="16" opacity=".78" filter="url(#back-glow)"/></g>
+    <path d="M-12 8.18 170.92 40.71 145.43 125.5-12 103.58Z" fill="none" stroke="#e0ffff" stroke-width="2.4" opacity=".82" filter="url(#back-core)"/>
+    <path d="m77 55-25 18 40 7m-40-7 21 22" fill="none" stroke="#98e4ee" stroke-width="6" opacity=".65" filter="url(#back-glow)"/>
+    <path d="m77 55-25 18 40 7m-40-7 21 22" fill="none" stroke="#c9e7ed" stroke-opacity=".92" stroke-width="2.6" filter="url(#back-core)"/>
+   </svg>
+  </button>
+  <nav id="tools" aria-label="演示工具"><button id="sound" aria-label="开启背景音乐" aria-pressed="false" title="背景音乐 M" hidden>♪</button><button id="fullscreen" aria-label="全屏" title="全屏 F">⛶</button></nav>
+  <div id="error" hidden role="alert"></div><div id="notice" role="status" aria-live="polite"></div>
+ </div>
+</main>
+<div id="loading" role="status" aria-label="正在载入地图">
+ <div class="loading-black"></div><canvas id="loading-grid" aria-hidden="true"></canvas><div class="loading-white"></div>
+ <div class="loading-emblem" aria-hidden="true">
+  <div class="loading-orbit"></div><div class="loading-wordmark">ORBIT</div><div class="loading-caption">穹顶孤舟</div>
+  <div class="loading-dots"><span></span><span></span><span></span></div>
+ </div>
+</div>
+<audio id="ambience" loop preload="none"></audio>
+<script type="module" src="app.js"></script>
+</body>
+</html>

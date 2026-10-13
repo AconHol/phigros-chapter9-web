@@ -1,0 +1,14 @@
+{
+  "name": "phigros-chapter9-web",
+  "version": "47.0.0",
+  "type": "module",
+  "scripts": {
+    "start": "node server.cjs"
+  },
+  "description": "Phigros 第九章地图、曲绘与剧情界面的浏览器还原",
+  "license": "MIT",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/AconHol/phigros-chapter9-web.git"
+  }
+}

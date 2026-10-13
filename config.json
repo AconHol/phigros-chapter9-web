@@ -1,0 +1,679 @@
+{
+  "version": 47,
+  "title": "穹顶孤舟",
+  "nodes": [
+    {
+      "id": "true-home",
+      "type": "song",
+      "title": "True Home, True World (Rework)",
+      "artist": "816ThreeNumbers",
+      "x": 1031,
+      "y": 65,
+      "width": 236,
+      "height": 133,
+      "image": "assets/art/art-true-home-true-world-rework.jpg",
+      "unlocked": true,
+      "contentSource": "reference-game-art"
+    },
+    {
+      "id": "about-universe",
+      "type": "song",
+      "title": "About The Universe",
+      "artist": "SOTUI & MIssionary",
+      "x": 1031.5,
+      "y": 526.5,
+      "width": 229,
+      "height": 115,
+      "image": "assets/art/art-about-the-universe.jpg",
+      "unlocked": true,
+      "contentSource": "reference-game-art"
+    },
+    {
+      "id": "evanescent",
+      "type": "song",
+      "title": "Evanescent",
+      "artist": "LeaF",
+      "x": 691.5,
+      "y": 757,
+      "width": 243,
+      "height": 128,
+      "image": "assets/art/art-evanescent.jpg",
+      "unlocked": true,
+      "contentSource": "reference-game-art"
+    },
+    {
+      "id": "implexrough",
+      "type": "song",
+      "title": "Implexrough",
+      "artist": "Silentroom × mommy",
+      "x": 1332.5,
+      "y": 757,
+      "width": 213,
+      "height": 128,
+      "image": "assets/art/art-implexrough.jpg",
+      "unlocked": true,
+      "contentSource": "reference-game-art",
+      "illustration": {
+        "offsetX": 0.01325
+      }
+    },
+    {
+      "id": "exoplanetary",
+      "type": "song",
+      "title": "Exoplanetary Mirage",
+      "artist": "Camellia",
+      "x": 277.5,
+      "y": 808.5,
+      "width": 303,
+      "height": 137,
+      "image": "assets/art/art-exoplanetary-mirage.jpg",
+      "unlocked": true,
+      "contentSource": "reference-game-art"
+    },
+    {
+      "id": "entrance",
+      "type": "song",
+      "title": "Entrance to the Chaos",
+      "artist": "打打だいず vs. siromaru",
+      "x": 1690.5,
+      "y": 808,
+      "width": 251,
+      "height": 138,
+      "image": "assets/art/art-entrance-to-the-chaos.jpg",
+      "unlocked": true,
+      "contentSource": "reference-game-art"
+    },
+    {
+      "id": "archive-01",
+      "type": "story",
+      "title": "穹顶记录·微光",
+      "x": 1026,
+      "y": 249,
+      "width": 88,
+      "height": 78,
+      "unlocked": true,
+      "pages": [
+        {
+          "title": "穹顶记录·微光",
+          "layout": "document",
+          "text": [
+            "夜色越过穹顶的边缘时，观测窗还亮着。值守者把最后一组坐标写在纸上，随后关闭了已经空转许久的接收器。室内安静下来，只剩远处传来的低鸣。",
+            "那道光并不明亮。它在窗外停留了片刻，像有人在极远的地方点燃一枚信号，又谨慎地将它熄灭。没有人能够确认信号来自何处，但记录员仍把出现的时间记在了页边。",
+            "第二天，所有仪器都给出了正常读数。记录没有被删除，纸张被折好，放进一个没有署名的信封。有人在封口处写下了两个字：微光。"
+          ],
+          "contentSource": "original-generated"
+        }
+      ],
+      "mapText": [
+        "微光",
+        "穹顶记录"
+      ],
+      "contentSource": "original-generated"
+    },
+    {
+      "id": "archive-02",
+      "type": "story",
+      "title": "穹顶记录·回声",
+      "x": 1026,
+      "y": 399,
+      "width": 94,
+      "height": 82,
+      "unlocked": true,
+      "pages": [
+        {
+          "title": "穹顶记录·回声",
+          "layout": "document",
+          "text": [
+            "接收器里先是传来一声轻响，随后是一段很长的空白。那声音不像语言，更像隔着厚墙传来的脚步。守在桌边的人没有回答，只把音量向上调了一格。",
+            "同样的轻响在三个不同的频道出现。每次间隔都略有变化，仿佛发送者一边移动，一边寻找能够穿过寂静的缝隙。记录员把三个频道画在同一张图上，发现它们最终指向了同一处。",
+            "他们没有立刻前往那处坐标。有人提议再等一个夜晚，确认听见的究竟是呼唤，还是一段早已离开的回声。"
+          ],
+          "contentSource": "original-generated"
+        }
+      ],
+      "mapText": [
+        "回声",
+        "接收日志"
+      ],
+      "contentSource": "original-generated"
+    },
+    {
+      "id": "archive-03",
+      "type": "story",
+      "title": "穹顶记录·漂流",
+      "x": 750.5,
+      "y": 507.5,
+      "width": 93,
+      "height": 81,
+      "unlocked": true,
+      "pages": [
+        {
+          "title": "穹顶记录·漂流",
+          "layout": "document",
+          "text": [
+            "船舱中的计时器走得很慢。窗外看不见熟悉的星图，只有零散的光点随着航向改变位置。每隔一段时间，导航员就会重画一次路线，擦去无法确认的部分。",
+            "他们逐渐学会用更小的事情判断距离：杯中水面的倾斜，扶手传来的震动，以及每一次转向后短暂改变的背景噪声。所有人都知道，这些证据并不可靠，但总比没有方向更好。",
+            "航行记录的最后一页没有终点。纸上只有一条继续延伸的线，和一句很轻的叮嘱：如果收到消息，记得留下回程的坐标。"
+          ],
+          "contentSource": "original-generated"
+        }
+      ],
+      "mapText": [
+        "漂流",
+        "远行记录"
+      ],
+      "contentSource": "original-generated"
+    },
+    {
+      "id": "archive-04",
+      "type": "clue",
+      "title": "破译：About The Universe",
+      "x": 855.5,
+      "y": 546,
+      "width": 95,
+      "height": 80,
+      "unlocked": true,
+      "pages": [
+        {
+          "title": "破译：About The Universe",
+          "layout": "banner",
+          "text": [
+            "截取的信号被分成六段，只有第三段保留了完整的起始脉冲。其余部分混杂着不同频率的噪声，难以直接拼接。",
+            "分析员先移除了重复的空白，再将脉冲间隔写成数字。那些数字并未形成可读的句子，却在重排后呈现出一组相互关联的坐标。",
+            "最后一段信号仍无法确认。它可能是校验，也可能是发送者留给接收者的一次停顿。记录暂时保留，等待新的片段出现。"
+          ],
+          "contentSource": "original-generated",
+          "image": "assets/archive-art/universe-record.jpg",
+          "imageSource": "reference-game-art"
+        }
+      ],
+      "mapText": [
+        "信号",
+        "破译记录"
+      ],
+      "contentSource": "original-generated"
+    },
+    {
+      "id": "archive-05",
+      "type": "clue",
+      "title": "破译·坐标残片",
+      "x": 1197,
+      "y": 546.5,
+      "width": 96,
+      "height": 81,
+      "unlocked": true,
+      "pages": [
+        {
+          "title": "破译·坐标残片",
+          "layout": "document",
+          "text": [
+            "残片中的坐标缺少末尾两位。重复计算得到的结果散布在一片狭长区域，所有候选位置都靠近旧航线。",
+            "地图上没有标记那里的设施。调查者只能沿着相邻的节点逐一比对，把仍能辨认的编号、时间和信号强度记在同一份表格中。",
+            "当最后两组记录重合时，一个新的交点出现在网格上。它没有名称，却与此前截获的断续信号保持着相同的距离。"
+          ],
+          "contentSource": "original-generated"
+        }
+      ],
+      "mapText": [
+        "坐标",
+        "残片索引"
+      ],
+      "contentSource": "original-generated"
+    },
+    {
+      "id": "archive-06",
+      "type": "story",
+      "title": "穹顶记录·旧站",
+      "x": 432.5,
+      "y": 662,
+      "width": 103,
+      "height": 82,
+      "unlocked": true,
+      "pages": [
+        {
+          "title": "穹顶记录·旧站",
+          "layout": "document",
+          "text": [
+            "旧站的门没有上锁。门后的灯仍按原来的时间点亮，照着空置的座椅和一面已经褪色的指示牌。站内广播没有声音，屏幕却偶尔闪过下一班航行的日期。",
+            "他们在柜台后找到一册登记簿。最后一位旅客只留下一个符号，出发时间和目的地都是空白。有人翻到更早的记录，发现同样的符号已经出现过很多次。",
+            "离开前，调查者把登记簿放回原处。他们没有关闭灯。也许还有人记得这座旧站，也许那个人正在很远的地方寻找一条回来时仍然亮着的路。"
+          ],
+          "contentSource": "original-generated"
+        }
+      ],
+      "mapText": [
+        "旧站",
+        "沿途记录"
+      ],
+      "contentSource": "original-generated"
+    },
+    {
+      "id": "archive-07",
+      "type": "clue",
+      "title": "破译·遗落的时刻",
+      "x": 487.5,
+      "y": 783,
+      "width": 87,
+      "height": 84,
+      "unlocked": true,
+      "pages": [
+        {
+          "title": "破译·遗落的时刻",
+          "layout": "document",
+          "text": [
+            "两只计时器在同一时刻启动，却在结束时留下不同的读数。误差不大，但每一次复测都会重复出现。",
+            "分析员把记录按事件顺序排列，发现缺失的时间总在同一段空白附近。那里没有可见的脉冲，也没有足够明显的噪声，像一小段被悄悄移走的间隔。",
+            "他们暂时停止了校正，保留原始读数。若某段时间确实遗落在途中，急于抹平误差只会让它更加难以寻找。"
+          ],
+          "contentSource": "original-generated"
+        }
+      ],
+      "mapText": [
+        "时刻",
+        "校时记录"
+      ],
+      "contentSource": "original-generated"
+    },
+    {
+      "id": "archive-08",
+      "type": "story",
+      "title": "穹顶记录·归航",
+      "x": 917.5,
+      "y": 734,
+      "width": 91,
+      "height": 82,
+      "unlocked": true,
+      "pages": [
+        {
+          "title": "穹顶记录·归航",
+          "layout": "document",
+          "text": [
+            "返程的路线比出发时短了一些。没人知道减少的是距离，还是等待。导航员沿着仍然可见的节点前进，把无法确认的地方留给下一次观测。",
+            "靠近穹顶时，接收器终于恢复了稳定的声音。那不是新的指令，只是一段反复播放的环境记录：门开启，脚步停下，有人在远处说话。",
+            "航行日志到这里便结束了。最后一行没有写成功或失败，只写下了一个简单的动作：打开门，回到仍然有人等待的地方。"
+          ],
+          "contentSource": "original-generated"
+        }
+      ],
+      "mapText": [
+        "归航",
+        "航路记录"
+      ],
+      "contentSource": "original-generated"
+    },
+    {
+      "id": "archive-09",
+      "type": "story",
+      "title": "档案 09",
+      "x": 1138,
+      "y": 734,
+      "width": 94,
+      "height": 82,
+      "unlocked": true,
+      "pages": [
+        {
+          "title": "档案 09",
+          "image": "assets/archive-art/story-pair.png",
+          "layout": "story",
+          "text": [
+            "穹顶之下，旧道路沿着河流的轮廓延伸。灰白的草叶掠过车身，远处的站台只剩一盏灯。吉诺放慢速度，让鸠看清那些被风吹散的路标。",
+            "【引擎的低鸣声】",
+            "【草叶擦过车轮】",
+            "【断续的报警声】",
+            "吉诺：怎么了？",
+            "鸠：先停一下，让鸠看看。",
+            "【刹车声】",
+            "面板上的光标闪了两下，停在一串陌生的字符旁。鸠伸手轻碰屏幕，回应她的只有短促的提示音。",
+            "吉诺：别下车，我先试试重启。",
+            "鸠：好像和刚才的错误不一样。",
+            "【加载失败的提示音】",
+            "吉诺：这里没有合适的工具。趁它还能运行，我们先离开这条路。",
+            "鸠：那就，先回家？",
+            "吉诺：嗯，抓稳一点。前面的近路会有些颠簸。",
+            "【引擎再次启动】",
+            "灯光转过弯道，河流与站台渐渐退到身后。鸠回望来时的方向，将那组字符悄悄记了下来。",
+            "鸠：等回去以后，再一起把它弄明白。",
+            "……"
+          ],
+          "contentSource": "original-generated",
+          "imageSource": "reference-game-art"
+        }
+      ],
+      "mapText": [
+        "归途",
+        "对话记录"
+      ],
+      "contentSource": "original-generated"
+    },
+    {
+      "id": "archive-10",
+      "type": "clue",
+      "title": "破译：Implexrough·线索一",
+      "x": 1493,
+      "y": 783,
+      "width": 100,
+      "height": 84,
+      "unlocked": true,
+      "pages": [
+        {
+          "title": "破译：Implexrough·线索一",
+          "layout": "banner",
+          "dim": 0.64,
+          "text": [
+            "不等指尖触及，那道杂音便兀自从替换数据上剥离，灵巧一扭，径直爆发开来。似泡沫破裂，蚊虫振翅，火花崩溅，粉末晃动，一切非常，交织缠绕，嘈嘈切切，吉诺却意外理解了其中的内容。",
+            "地震后的夜晚，研究所的所有人被疏散在一片空地，空地两头测试无线电的研究员进行了这样一番对话。",
+            "“我们头顶的宇宙，看似群星闪耀，聚若河流，然而哪怕是光，想要跨越两颗星星间的距离，也需要数年的时间。假设人的心灵也是宇宙中的星星，现在，我们看似只有一片空地的距离，但你的心灵对我来说，依旧是毕生无法到达的未知宇宙。我想改变这个事实，为此我需要你的力量。”",
+            "“我说过，一旦人脑链接技术成熟，那么剥削就会从劳动转向肉体。”",
+            "“不会的，我会向你证明，排除了肉体的约束，只凭心灵的战争中，胜利不属于任何人。”",
+            "这是一个关于心灵和宇宙的比喻，红移之下，所有的星星都在互相远离，人越是成长，能够互相理解的个体，也会变得越来越少。人们总说孩童是最快乐的，他们的快乐纯真无邪，未曾沾染大人的肮脏龌龊。我却认为，孩童的快乐来自于“共同”，他们因相同而产生群体意识，因相同而相信快乐。那时候，他们的心灵是最接近的。"
+          ],
+          "contentSource": "original-generated",
+          "image": "assets/art/art-implexrough.jpg",
+          "imageSource": "reference-game-art"
+        }
+      ],
+      "mapText": [
+        "线索一",
+        "IMPLEXROUGH"
+      ],
+      "contentSource": "original-generated"
+    },
+    {
+      "id": "archive-11",
+      "type": "clue",
+      "title": "破译：Evanescent",
+      "x": 933.5,
+      "y": 857.5,
+      "width": 91,
+      "height": 85,
+      "unlocked": true,
+      "pages": [
+        {
+          "title": "破译：Evanescent",
+          "layout": "document",
+          "contentSource": "original-generated",
+          "text": [
+            "通道深处的信号逐渐衰减，最后只剩一组重复出现的脉冲。分析员把它与附近节点的记录并排放置，等待两段波形之间短暂的重合。",
+            "重合发生时，图中显现出一条原本没有标注的路线。它穿过数个已经失去名称的地点，最终停在一个空白节点旁。",
+            "记录暂时保留。需要补充的不是结论，而是下一次出现的信号，以及能够确认它来自何处的新坐标。"
+          ]
+        }
+      ],
+      "mapText": [
+        "破译",
+        "EVANESCENT"
+      ],
+      "contentSource": "original-generated"
+    },
+    {
+      "id": "archive-12",
+      "type": "clue",
+      "title": "破译：Implexrough",
+      "x": 1111.5,
+      "y": 856.5,
+      "width": 91,
+      "height": 85,
+      "unlocked": true,
+      "pages": [
+        {
+          "title": "破译：Implexrough",
+          "layout": "banner",
+          "dim": 0.64,
+          "image": "assets/archive-art/implexrough-record.jpg",
+          "text": [
+            "“只要拿着就可以吗，还是说需要进行某些操作？”",
+            "“理论上说这东西是自动生效的，掏出来捏手里就行。不过，我们不能保证它吸引来的完全都是我们的数据，毕竟人脑嘛——你懂得，干干净净带出来，没那么容易，不过也不会有危险就是。”",
+            "吉诺攥了攥碎数研给他的替换数据，一味的闷头走路，脚下的土地由坚硬变得绵软，灰白的草叶刮弄脚踝，轻抚小腿，半人高，一人高；无风自动，细小的绒毛簇簇落下，像极了他在地表见到的雪。回头看去，鸠和他们的小屋仍在视野范围里，此地不远不近，正合适。",
+            "他与碎数研的合作只剩最后一步，那就是回收碎数研先前发射的替换数据，将这束“病毒”从寄主的大脑里删除，抹除这个组织的作案痕迹。现在时机正好，吉诺将数据取出，任其散发蓝光，从宇宙中吸引来更多相似之物。",
+            "……",
+            "……",
+            "……"
+          ],
+          "contentSource": "original-generated",
+          "imageSource": "reference-game-art",
+          "imagePlacement": {
+            "x": -262.0889547,
+            "y": -168.8440742,
+            "width": 1809.8998151,
+            "height": 1003.486183
+          },
+          "imageDetail": {
+            "image": "assets/archive-art/implexrough-record-detail.png",
+            "rect": [
+              175,
+              0,
+              1105,
+              245
+            ],
+            "embeddedMaterial": true,
+            "baseImage": "assets/archive-art/implexrough-record.jpg"
+          }
+        }
+      ],
+      "mapText": [
+        "破译",
+        "IMPLEXROUGH"
+      ],
+      "contentSource": "original-generated"
+    },
+    {
+      "id": "unknown-01",
+      "type": "song",
+      "title": "未知曲目",
+      "x": 1293.5,
+      "y": 508.5,
+      "width": 95,
+      "height": 81,
+      "unlocked": false,
+      "shape": "hexagon",
+      "contentSource": "original-generated"
+    },
+    {
+      "id": "document-01",
+      "type": "document",
+      "title": "文档 01",
+      "x": 1418.5,
+      "y": 453,
+      "width": 77,
+      "height": 44,
+      "unlocked": true,
+      "pages": [
+        {
+          "title": "观测文档 01",
+          "layout": "document",
+          "contentSource": "original-generated",
+          "text": [
+            "记录编号：01。本次观测按地图节点顺序进行，保留原始时间、位置与信号强度，暂不合并无法确认的读数。",
+            "相邻节点之间出现了轻微的亮度变化。变化沿着网格传播，经过交点后分向不同方向，没有改变原来的连接关系。",
+            "建议继续保持接收，等待更多重复样本。下一份记录将以同一组坐标为基准，核对信号是否再次经过这些交点。"
+          ]
+        }
+      ],
+      "contentSource": "original-generated"
+    },
+    {
+      "id": "document-02",
+      "type": "document",
+      "title": "文档 02",
+      "x": 1229,
+      "y": 638,
+      "width": 78,
+      "height": 46,
+      "unlocked": true,
+      "pages": [
+        {
+          "title": "观测文档 02",
+          "layout": "document",
+          "contentSource": "original-generated",
+          "text": [
+            "记录编号：02。本次观测按地图节点顺序进行，保留原始时间、位置与信号强度，暂不合并无法确认的读数。",
+            "相邻节点之间出现了轻微的亮度变化。变化沿着网格传播，经过交点后分向不同方向，没有改变原来的连接关系。",
+            "建议继续保持接收，等待更多重复样本。下一份记录将以同一组坐标为基准，核对信号是否再次经过这些交点。"
+          ]
+        }
+      ],
+      "contentSource": "original-generated"
+    },
+    {
+      "id": "document-03",
+      "type": "document",
+      "title": "文档 03",
+      "x": 1486,
+      "y": 638,
+      "width": 82,
+      "height": 46,
+      "unlocked": true,
+      "pages": [
+        {
+          "title": "观测文档 03",
+          "layout": "document",
+          "contentSource": "original-generated",
+          "text": [
+            "记录编号：03。本次观测按地图节点顺序进行，保留原始时间、位置与信号强度，暂不合并无法确认的读数。",
+            "相邻节点之间出现了轻微的亮度变化。变化沿着网格传播，经过交点后分向不同方向，没有改变原来的连接关系。",
+            "建议继续保持接收，等待更多重复样本。下一份记录将以同一组坐标为基准，核对信号是否再次经过这些交点。"
+          ]
+        }
+      ],
+      "contentSource": "original-generated"
+    },
+    {
+      "id": "document-04",
+      "type": "document",
+      "title": "文档 04",
+      "x": 583,
+      "y": 677.5,
+      "width": 80,
+      "height": 47,
+      "unlocked": true,
+      "pages": [
+        {
+          "title": "观测文档 04",
+          "layout": "document",
+          "contentSource": "original-generated",
+          "text": [
+            "记录编号：04。本次观测按地图节点顺序进行，保留原始时间、位置与信号强度，暂不合并无法确认的读数。",
+            "相邻节点之间出现了轻微的亮度变化。变化沿着网格传播，经过交点后分向不同方向，没有改变原来的连接关系。",
+            "建议继续保持接收，等待更多重复样本。下一份记录将以同一组坐标为基准，核对信号是否再次经过这些交点。"
+          ]
+        }
+      ],
+      "contentSource": "original-generated"
+    },
+    {
+      "id": "document-05",
+      "type": "document",
+      "title": "文档 05",
+      "x": 1603.5,
+      "y": 678.5,
+      "width": 87,
+      "height": 49,
+      "unlocked": true,
+      "pages": [
+        {
+          "title": "观测文档 05",
+          "layout": "document",
+          "contentSource": "original-generated",
+          "text": [
+            "记录编号：05。本次观测按地图节点顺序进行，保留原始时间、位置与信号强度，暂不合并无法确认的读数。",
+            "相邻节点之间出现了轻微的亮度变化。变化沿着网格传播，经过交点后分向不同方向，没有改变原来的连接关系。",
+            "建议继续保持接收，等待更多重复样本。下一份记录将以同一组坐标为基准，核对信号是否再次经过这些交点。"
+          ]
+        }
+      ],
+      "contentSource": "original-generated"
+    }
+  ],
+  "links": [
+    {
+      "from": "exoplanetary",
+      "to": "archive-02",
+      "via": [
+        [
+          506,
+          397
+        ]
+      ],
+      "style": "route"
+    },
+    {
+      "from": "archive-02",
+      "to": "entrance",
+      "via": [
+        [
+          1538,
+          397
+        ]
+      ],
+      "style": "route"
+    },
+    {
+      "from": "archive-03",
+      "to": "archive-04"
+    },
+    {
+      "from": "archive-04",
+      "to": "about-universe"
+    },
+    {
+      "from": "about-universe",
+      "to": "archive-05"
+    },
+    {
+      "from": "archive-05",
+      "to": "unknown-01"
+    },
+    {
+      "from": "evanescent",
+      "to": "archive-06"
+    },
+    {
+      "from": "evanescent",
+      "to": "archive-07"
+    },
+    {
+      "from": "archive-08",
+      "to": "archive-09"
+    },
+    {
+      "from": "archive-09",
+      "to": "implexrough"
+    },
+    {
+      "from": "implexrough",
+      "to": "archive-10"
+    },
+    {
+      "from": "archive-08",
+      "to": "archive-11"
+    },
+    {
+      "from": "archive-09",
+      "to": "archive-12"
+    }
+  ],
+  "effects": {
+    "scanlines": {
+      "period": 8.5,
+      "width": 0.45,
+      "strength": 0.065
+    },
+    "rendering": "procedural",
+    "background": {
+      "space": "world",
+      "style": "dark-architecture"
+    }
+  },
+  "loading": {
+    "enabled": true,
+    "duration": 1.1
+  },
+  "navigation": {
+    "padding": 84.2,
+    "elasticity": 110
+  },
+  "view": {
+    "node": "about-universe",
+    "zoom": 3.08
+  }
+}

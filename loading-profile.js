@@ -1,0 +1,1 @@
+export const LOADING_PROFILE={minimumDuration:1.1,logoOut:.20,whiteHold:1.68,revealDuration:1.30,loadingKeys:[[0,0,0,0,0],[.18,1,1,.15,.15],[.4,1,.15,1,.15],[.7,1,.15,.15,1],[1.1,1,1,.15,.15]],whiteKeys:[[0,1],[.118,.878],[.316,.660],[.517,.439],[.717,.214],[.913,0],[1.30,0]]};
