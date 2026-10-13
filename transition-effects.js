@@ -7,7 +7,8 @@ export function backdropLayersAt(layout,time,reducedMotion=false){
  // The old map softens through the reveal, rather than reaching maximum
  // blur before the artwork starts. The final Gaussian strength is unchanged.
  const underlay=smooth(clamp(t/(song?1.10:1.28))**1.4);
- // The finer lattice belongs only to the lower plane. It is already present
+ // The lower lattice has the same full-cell geometry as the upper plane.
+ // Its strokes are already present
  // in the blurred material; expansion and Gaussian clearing expose it together.
  // Its final period differs from the upper plane, so the lattices overlap.
  return{upperScale:.86+.14*upper,lowerScale:.72+.32*lower,lowerBlur:12*(1-(.25*lower+.75*clear)),underlayBlur:16*underlay,cover:smooth(t/(song?.34:.32))};

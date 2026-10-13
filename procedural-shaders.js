@@ -14,10 +14,11 @@ vec4 layer(vec2 p,float scale,float lower){
  float height=uView.y/uView.x*1280.,y=p.y/height;
  p=(p-vec2(640.,uView.y/uView.x*640.))/scale+vec2(640.,uView.y/uView.x*640.);
  vec2 origin=mix(vec2(${G.origin[0]},${G.origin[1]}),vec2(${G.lowerOrigin[0]},${G.lowerOrigin[1]}),lower)+vec2(0.,(height-${G.referenceHeight}.)*.5);
- vec4 tile=triangle(p-origin,${G.cell}.),macro=triangle(p-origin,${G.cell*G.artCells}.);
- float seed=hash(macro.xy+macro.z*vec2(7.,3.)),facetSeed=hash(tile.xy+tile.z*vec2(13.,7.)),d=tile.w;
- float latticeDistance=mix(d,seam(p-origin,${G.lowerCell}.),lower);
- float edge=exp(-.5*pow(latticeDistance/.55,2.)),halo=exp(-.5*pow(latticeDistance/2.4,2.));
+ // Each plane has one complete lattice. Shading, coverage and strokes all
+ // use that lattice; neither plane contains a finer subdivision.
+ vec4 tile=triangle(p-origin,${G.cell}.);
+ float seed=hash(tile.xy+tile.z*vec2(7.,3.)),facetSeed=hash(tile.xy+tile.z*vec2(13.,7.)),d=tile.w;
+ float edge=exp(-.5*pow(d/.55,2.)),halo=exp(-.5*pow(d/2.4,2.));
  float shapeShade=.025+.026*seed;
  vec3 color=vec3(.004,.013,.019)+vec3(.13,.21,.24)*shapeShade;
  float fog=fbm(p*vec2(.009,.021)+vec2(.4,-uEffect.y*.025));
@@ -35,7 +36,7 @@ vec4 layer(vec2 p,float scale,float lower){
  float seamGain=.24+.76*fog;
  float rim=edge*.12+halo*.07;
 
- float lowerHalo=exp(-.5*pow(latticeDistance/mix(1.8,6.5,materialBlur),2.));
+ float lowerHalo=exp(-.5*pow(d/mix(1.8,6.5,materialBlur),2.));
  rim=mix(rim,(edge*.025+lowerHalo*.075+gap*.018)*seamScale,lower);
  color+=rimColor*seamGain*rim*mix(1.,4.8*illumination*(.22+.78*band),lower);
  // Diffuse blue-grey light, rather than a saturated cyan wireframe.
@@ -48,11 +49,11 @@ vec4 layer(vec2 p,float scale,float lower){
  float front=-.08+uEffect.x*1.16;
  float appearance=(1.-smoothstep(front-.06,front+.06,rowY))*smoothstep(0.,.12,uEffect.x);
  // Keep lower parts transparent, including while the lower seams spread.
- float materialAlpha=lower>.5?1.:(.82+.18*smoothstep(.8,3.5,macro.w))*(.58+.42*smoothstep(.25,.70,seed));
- // Independent lower-plane strokes, not subdivisions or inset copies of
- // the upper lattice. They sharpen through the actual RGBA blur pass.
- float fineEdge=exp(-.5*pow(latticeDistance/1.,2.));
- color+=lower*vec3(.105,.12125,.11875)*fineEdge*mix(1.,.55,uKind);
+ float materialAlpha=lower>.5?1.:(.82+.18*smoothstep(.8,3.5,d))*(.58+.42*smoothstep(.25,.70,seed));
+ // The thinner-looking lower strokes come from clearing the blurred plane,
+ // at the same complete-cell size, not from adding smaller triangles.
+ float lowerEdge=exp(-.5*pow(d/.5,2.));
+ color+=lower*vec3(.105,.12125,.11875)*lowerEdge*mix(1.,.55,uKind);
  float alpha=weight*appearance*materialAlpha;
  return vec4(color,alpha);
 }

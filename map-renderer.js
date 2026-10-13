@@ -285,7 +285,7 @@ export class MapRenderer{
   this.renderTarget(target);gl.enable(gl.BLEND);gl.blendFunc(gl.ONE,gl.ONE_MINUS_SRC_ALPHA);
   const composite=this.programs.readerComposite;this.bind(composite,this.quad,false);this.texture(composite,'uTexture',lowerTexture,0);this.f(composite,'uExit',state.exit??0);gl.drawArrays(gl.TRIANGLES,0,6);
   setMaterial(0,state.exit??0);gl.drawArrays(gl.TRIANGLES,0,6);gl.disable(gl.BLEND);
-  this.canvas.dataset.backdropLayers=JSON.stringify(layers);this.canvas.dataset.lowerBlurMode='dense-gaussian-premultiplied-rgba';this.canvas.dataset.transitionGridCell='126';this.canvas.dataset.transitionFineGridCell='42';this.canvas.dataset.transitionFineGridMode='independent-lower-plane';this.canvas.dataset.transitionGridComposition='overlapping-planes';this.canvas.dataset.transitionExit=String(state.exit??0);return camera;
+  this.canvas.dataset.backdropLayers=JSON.stringify(layers);this.canvas.dataset.lowerBlurMode='dense-gaussian-premultiplied-rgba';this.canvas.dataset.transitionGridCell='126';this.canvas.dataset.transitionLowerGridCell='126';this.canvas.dataset.transitionLowerGridMode='full-cell-independent-plane';this.canvas.dataset.transitionGridComposition='overlapping-planes';this.canvas.dataset.transitionExit=String(state.exit??0);return camera;
  }
  drawReader(){
   const state=this.readerState;if(!state)return;this.readerCamera=this.drawReaderField(state);const gl=this.gl,art=this.textures.get('archive:'+state.image);

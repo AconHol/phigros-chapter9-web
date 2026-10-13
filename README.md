@@ -1,6 +1,6 @@
 # Phigros 第九章 · 穹顶孤舟
 
-使用 HTML、CSS、JavaScript 和 WebGL 还原第九章地图、曲绘详情与剧情资料界面。当前版本：47。
+使用 HTML、CSS、JavaScript 和 WebGL 还原第九章地图、曲绘详情与剧情资料界面。当前版本：48。
 
 [在线演示](https://demo.aconhol.xyz/projects/phigros/)
 
@@ -50,7 +50,7 @@ node server.cjs --port=8080 --no-open
 - `map-renderer.js` 负责 WebGL 场景与图层合成。
 - `map-background.js`、`facet-light.js` 和 `particle-field.js` 负责地图背景、逐块光效与水平三角粒子。
 - `procedural-shaders.js` 负责曲绘、资料图片和详情背景材质。
-- `transition-effects.js`、`transition-geometry.js` 负责详情背景的两层独立网格：下层放大并消除实际高斯模糊，与上层重叠。
+- `transition-effects.js`、`transition-geometry.js` 负责详情背景的两层独立网格：上下层均为完整尺寸的网格，下层放大并消除实际高斯模糊，与上层重叠；不再包含细分小格。
 - `transition-curves.js`、`wipe-timing.js` 负责非线性单向擦入及返回时序。
 - `grid-transition.js` 和 `map-arrival.js` 负责加载后的网格曝光与外侧辉光消散。
 
