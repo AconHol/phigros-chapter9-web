@@ -27,6 +27,7 @@
    <div class="archive-illustration"><img alt="" decoding="async"><svg class="archive-grid" aria-hidden="true"><path/></svg></div>
    <div class="archive-scroll" tabindex="0" aria-label="档案正文"><h1 id="archive-title" tabindex="-1"></h1><div class="archive-text"></div></div>
    <nav class="archive-pages" aria-label="档案分页" hidden><button data-page="previous" aria-label="上一页">‹</button><span></span><button data-page="next" aria-label="下一页">›</button></nav>
+   <button class="story-expand" aria-label="展开剧情插画" title="展开剧情插画" hidden><svg viewBox="0 0 32 32" aria-hidden="true"><path d="M5 12V5h7M20 5h7v7M27 20v7h-7M12 27H5v-7M5 5l7 7M27 5l-7 7M27 27l-7-7M5 27l7-7"/></svg></button>
   </section>
   <button id="back" aria-label="复位地图" title="复位地图 R">
    <svg viewBox="0 0 184 132" aria-hidden="true"><defs><filter id="back-glow" x="-50%" y="-70%" width="230%" height="240%"><feGaussianBlur stdDeviation="5.8"/></filter><filter id="back-halo" x="-50%" y="-70%" width="230%" height="240%"><feGaussianBlur stdDeviation="8"/></filter><filter id="back-core" x="-10%" y="-10%" width="120%" height="120%"><feGaussianBlur stdDeviation=".75"/></filter><clipPath id="back-clip"><path d="M-12 8.18 170.92 40.71 145.43 125.5-12 103.58Z"/></clipPath><linearGradient id="back-face" x2=".8" y2="1"><stop stop-color="#00232b"/><stop offset=".58" stop-color="#010c12"/><stop offset="1" stop-color="#062630"/></linearGradient></defs>
@@ -50,6 +51,7 @@
  </div>
 </div>
 <audio id="ambience" loop preload="none"></audio>
+<dialog id="story-art-viewer" aria-label="剧情插画预览"><button aria-label="关闭插画预览" title="关闭 Esc">×</button><img alt="" decoding="async"></dialog>
 <script type="module" src="app.js"></script>
 </body>
 </html>

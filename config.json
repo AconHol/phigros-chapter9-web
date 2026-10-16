@@ -1,5 +1,5 @@
 {
-  "version": 48,
+  "version": 49,
   "title": "穹顶孤舟",
   "nodes": [
     {
@@ -304,7 +304,7 @@
     {
       "id": "archive-09",
       "type": "story",
-      "title": "档案 09",
+      "title": "归途",
       "x": 1138,
       "y": 734,
       "width": 94,
@@ -312,38 +312,40 @@
       "unlocked": true,
       "pages": [
         {
-          "title": "档案 09",
+          "title": "归途",
           "image": "assets/archive-art/story-pair.png",
           "layout": "story",
           "text": [
-            "穹顶之下，旧道路沿着河流的轮廓延伸。灰白的草叶掠过车身，远处的站台只剩一盏灯。吉诺放慢速度，让鸠看清那些被风吹散的路标。",
-            "【引擎的低鸣声】",
-            "【草叶擦过车轮】",
-            "【断续的报警声】",
-            "吉诺：怎么了？",
-            "鸠：先停一下，让鸠看看。",
-            "【刹车声】",
-            "面板上的光标闪了两下，停在一串陌生的字符旁。鸠伸手轻碰屏幕，回应她的只有短促的提示音。",
-            "吉诺：别下车，我先试试重启。",
-            "鸠：好像和刚才的错误不一样。",
-            "【加载失败的提示音】",
-            "吉诺：这里没有合适的工具。趁它还能运行，我们先离开这条路。",
+            "俯看天穹层，铁灰的大地上，河网密布，如石油淌过干涸床，糖浆流溢龟裂地。地，是落叶归根尘作土，河，是星斗银河梦华霓。",
+            "【摩托轰鸣】　【草叶摩擦声】",
+            "【咕咕叫的报警音】",
+            "？：有情况？！",
+            "？？？？：【刹车】是车子的故障提醒音。咦？【布料摩擦声】欸，别乱跑！",
+            "鸠：莫不是运来时又磕碰出了问题，让鸠看看——不好了阿吉，是咕咕也没见过的报错！",
+            "Gino：【按】你先坐回去！【戳击面板】【加载失败的音效】不行，在外面是修不好了。",
             "鸠：那就，先回家？",
-            "吉诺：嗯，抓稳一点。前面的近路会有些颠簸。",
-            "【引擎再次启动】",
-            "灯光转过弯道，河流与站台渐渐退到身后。鸠回望来时的方向，将那组字符悄悄记了下来。",
-            "鸠：等回去以后，再一起把它弄明白。",
-            "……"
+            "Gino：只能这样了，趁还能用。【俯身】【拧动油门】抓紧我，抄近道路不平。",
+            "trophon的引擎咆哮着，声如轰雷，彻底震碎这片地的宁静。",
+            "鸠：呜哇————"
           ],
-          "contentSource": "original-generated",
-          "imageSource": "reference-game-art"
+          "contentSource": "reference-recording",
+          "imageSource": "reference-game-art",
+          "imagePlacement": {
+            "x": -350,
+            "y": 60.06,
+            "width": 1277,
+            "height": 716,
+            "referenceHeight": 840,
+            "baseImage": "assets/archive-art/story-pair.png"
+          }
         }
       ],
       "mapText": [
         "归途",
         "对话记录"
       ],
-      "contentSource": "original-generated"
+      "contentSource": "reference-recording",
+      "image": "assets/archive-art/story-pair.png"
     },
     {
       "id": "archive-10",
@@ -675,5 +677,10 @@
   "view": {
     "node": "about-universe",
     "zoom": 3.08
+  },
+  "audio": {
+    "ambience": "assets/audio/chapter-ambience.m4a",
+    "volume": 0.23,
+    "autoplay": true
   }
 }

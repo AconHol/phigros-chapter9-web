@@ -76,3 +76,18 @@
 /* Illustrated records: artwork above, title in its soft lower skirt. */
 #reader[data-layout="banner"] .archive-scroll{top:416px}
 #reader[data-layout="banner"] .archive-scroll h1{margin-bottom:82px}
+
+/* The illustration and column share the recording's reference coordinates. */
+#reader[data-layout="story"] .archive-scroll{left:var(--story-text-left);right:var(--story-text-right);top:var(--story-text-top);bottom:var(--story-text-bottom);mask-image:linear-gradient(to bottom,#000 calc(100% - var(--story-feather)),transparent 100%)}
+#reader[data-layout="story"] .archive-text{font-size:var(--story-font);line-height:1.5;color:#eeeef0;letter-spacing:0}
+.story-expand{position:absolute;left:var(--story-expand-left);top:var(--story-expand-top);width:var(--story-expand-size);height:var(--story-expand-size);padding:0;border:0;background:transparent;color:#d3e0e4;cursor:zoom-in;filter:drop-shadow(0 0 2px #cce9ed55)}
+.story-expand svg{width:100%;height:100%;fill:none;stroke:currentColor;stroke-width:2.2}.story-expand:disabled{pointer-events:none}.story-expand:focus-visible{outline:1px solid #d9f8ff;outline-offset:5px}
+#story-art-viewer{position:fixed;inset:0;width:100vw;height:100dvh;max-width:none;max-height:none;margin:0;padding:5vh 4vw;border:0;background:#02090ded;color:#d9eef2;overflow:hidden;opacity:0;transition:opacity .22s cubic-bezier(.2,0,.5,1)}
+#story-art-viewer::backdrop{background:#0009;backdrop-filter:blur(12px)}
+#story-art-viewer[open]{display:grid;place-items:center;opacity:1;animation:story-viewer-enter .42s cubic-bezier(.18,.6,.25,1) both}
+#story-art-viewer img{max-width:92vw;max-height:88dvh;width:auto;height:auto;object-fit:contain}
+#story-art-viewer button{position:absolute;right:24px;top:14px;border:0;background:transparent;color:inherit;font-size:36px;padding:4px 14px;cursor:pointer}
+#story-art-viewer[data-closing="true"]{animation:none;opacity:0}
+@keyframes story-viewer-enter{from{opacity:0;transform:scale(.97);filter:blur(5px)}to{opacity:1;transform:scale(1);filter:blur(0)}}
+@media(hover:none){#tools{opacity:.62}}
+@media(prefers-reduced-motion:reduce){#story-art-viewer[open]{animation:none;transition:none}}

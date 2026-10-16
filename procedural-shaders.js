@@ -84,7 +84,7 @@ vec2 hexCenter(vec2 p,float size){
 }
 void main(){
  vec2 s=vec2(uv.x,1.-uv.y),p=s*vec2(1280.,uView.y/uView.x*1280.);float portrait=step(.85,uView.y/uView.x);
- float expansion=.965+.035*(1.-pow(1.-clamp(uTime/1.22,0.,1.),3.));vec2 center=vec2(640.,180.);vec2 samplePoint=(p-center)/expansion+center;
+ float expansion=uKind>.5?1.:.965+.035*(1.-pow(1.-clamp(uTime/1.22,0.,1.),3.));vec2 center=vec2(640.,180.);vec2 samplePoint=(p-center)/expansion+center;
  float ratio=uImage.x/uImage.y;vec2 imageUv;float mask,reveal;
  float height=uView.y/uView.x*1280.;vec2 origin=vec2(${G.origin[0]},${G.origin[1]})+vec2(0.,(height-${G.referenceHeight}.)*.5);
  vec2 gridCenter=vec2(640.,height*.5),gridPoint=(p-gridCenter)/uUpperScale+gridCenter;
@@ -95,9 +95,9 @@ void main(){
    float front=-130.+uWipe*860.;reveal=1.-smoothstep(front-115.,front+115.,p.y+p.x*.065);
    mask=(1.-smoothstep(230.,435.,p.y))*(.90+.10*seed);
  }else{
-   float displayHeight=mix(uView.y/uView.x*1280.,1280./ratio,portrait);float displayWidth=displayHeight*ratio;
-   imageUv=vec2((samplePoint.x+displayWidth*.16)/displayWidth,samplePoint.y/displayHeight);
-   float boundary=mix(650.,1280.,portrait);vec2 hex=hexCenter(gridPoint-origin,${G.cell}.)+origin;float hexSeed=hash(hex);
+   float displayHeight=uArtPlacement.w>0.?uArtPlacement.w:mix(uView.y/uView.x*1280.,1280./ratio,portrait);float displayWidth=displayHeight*ratio;
+   imageUv=uArtPlacement.z>0.?(samplePoint-uArtPlacement.xy)/uArtPlacement.zw:vec2((samplePoint.x+displayWidth*.16)/displayWidth,samplePoint.y/displayHeight);
+   float boundary=mix(630.,1280.,portrait);vec2 hex=hexCenter(gridPoint-origin,${G.cell}.)+origin;float hexSeed=hash(hex);
    float hexX=(hex.x-gridCenter.x)*uUpperScale+gridCenter.x;
    float hexMask=1.-smoothstep(boundary-100.+hexSeed*55.,boundary+70.+hexSeed*55.,hexX);
    // A soft image edge carries faint aligned hex remnants. Quantizing the
@@ -105,10 +105,12 @@ void main(){
    float continuousMask=1.-smoothstep(boundary-100.,boundary+70.,p.x);
    float edgeBand=1.-smoothstep(160.,240.,abs(p.x-boundary));
    mask=mix(continuousMask,hexMask,.18*edgeBand);
-   mask*=1.-smoothstep(displayHeight*.78,displayHeight*1.02,p.y);
-   // Broad continuous front follows the oblique picture edge.
-   float front=-155.+uWipe*(boundary+displayHeight*.30+340.);
-   reveal=1.-smoothstep(front-115.,front+115.,p.x+p.y*.30);
+   float pictureBottom=uArtPlacement.w>0.?uArtPlacement.y+uArtPlacement.w:displayHeight;
+   mask*=1.-smoothstep(pictureBottom-40.,pictureBottom+20.,p.y);
+   // The recording has one almost vertical oblique front, at fixed picture
+   // coordinates. Its width and timing are independent from picture opacity.
+   float front=-40.+uWipe*(boundary+height*.025+80.);
+   reveal=1.-smoothstep(front-40.,front+40.,p.x+p.y*.025);
    // Screen-aligned nested triangles penetrate the art at its right edge.
    vec4 intrusion=triangle(gridPoint-origin,${G.cell}.);
    float intrusionSeed=hash(intrusion.xy+intrusion.z*vec2(13.,7.));
@@ -121,6 +123,7 @@ void main(){
  vec4 artwork=texture2D(uArt,clamp(imageUv,vec2(0.),vec2(1.)));vec3 color=artwork.rgb;
  float artLuminance=dot(color,vec3(.2126,.7152,.0722));
  color=mix(vec3(artLuminance),color,mix(.38,.78,step(.5,uKind)))*mix(.96,.90,step(.5,uKind));
+ if(uKind>.5&&uArtPlacement.z>0.)color=artwork.rgb;
  if(uKind<.5)color*=.17+.83*smoothstep(.6,2.3,seam(gridPoint-origin,${G.cell}.));
  vec2 nativeUv=(samplePoint-uDetailRect.xy)/max(uDetailRect.zw,vec2(1.));float nativeEdge=min(min(nativeUv.x*uDetailRect.z,(1.-nativeUv.x)*uDetailRect.z),min(nativeUv.y*uDetailRect.w,(1.-nativeUv.y)*uDetailRect.w));float nativeWeight=uHasDetail*smoothstep(0.,8.,nativeEdge);vec4 nativeArt=texture2D(uArtDetail,clamp(nativeUv,vec2(0.),vec2(1.)));color=mix(color,nativeArt.rgb,nativeWeight);mask=mix(mask,1.,nativeWeight*uEmbeddedMaterial);artwork.a=mix(artwork.a,nativeArt.a,nativeWeight);
  float valid=step(0.,imageUv.x)*step(imageUv.x,1.)*step(0.,imageUv.y)*step(imageUv.y,1.);

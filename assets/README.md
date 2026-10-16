@@ -5,3 +5,5 @@
 `fonts/` 中的 Saira 字体使用 SIL Open Font License，原许可证保存在 `fonts/OFL-Saira.txt`。
 
 自定义作品时，可在 `config.json` 中替换图片、标题、正文及地图布局。
+
+`audio/chapter-ambience.m4a` 为已有参考视频的章节环境音轨，属于第三方素材，不受本项目 MIT 许可证覆盖。可通过配置替换为自己的音乐。

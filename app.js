@@ -7,12 +7,15 @@ import {edgeRevealAt} from './transition-effects.js';
 import {exitAt} from './transition-curves.js';
 import {setTitleGlassWipe} from './title-glass.js';
 import {navigationBounds,cameraLimits,resistAxis,settleAxis} from './map-bounds.js';
+import {storyLayoutAt} from './story-layout.js';
+import {BackgroundAudio} from './background-audio.js';
 
 const $=id=>document.getElementById(id),stage=$('stage'),input=$('map-input'),targets=$('node-accessibility');
 const initial={x:VIEW.width/2,y:VIEW.height/2,zoom:1},camera={...initial};
 const archive=new ArchiveReader($('reader'));
+const music=new BackgroundAudio($('ambience'),$('sound'));
 const pointers=new Map(),buttons=new Map(),reducedMotion=matchMedia('(prefers-reduced-motion:reduce)').matches;
-let renderer,scene,panBounds,boot,resourcesReady=false,scale=1,stageWidth=VIEW.width,stageHeight=VIEW.height,gesture=null,velocity=[0,0],animation=null,lastFrame=0,lastDraw=0,dirty=true,clock=0,noticeTimer,lastInput=0,soundOn=false,selectedNode=null,detailClosing=false,interfaceClosing=null;
+let renderer,scene,panBounds,boot,resourcesReady=false,scale=1,stageWidth=VIEW.width,stageHeight=VIEW.height,gesture=null,velocity=[0,0],animation=null,lastFrame=0,lastDraw=0,dirty=true,clock=0,noticeTimer,lastInput=0,selectedNode=null,detailClosing=false,interfaceClosing=null;
 
 function resize(){
  stageWidth=Math.max(VIEW.width,innerWidth/innerHeight*VIEW.height);stageHeight=Math.max(VIEW.height,innerHeight/innerWidth*VIEW.width);scale=innerWidth/stageWidth;camera.viewWidth=initial.viewWidth=stageWidth;camera.viewHeight=initial.viewHeight=stageHeight;
@@ -22,9 +25,16 @@ function resize(){
  stage.style.setProperty('--back-scale',String(uiScale));stage.style.setProperty('--song-ui-scale',String(uiScale));stage.style.setProperty('--song-ui-expansion',String(uiExpansion));stage.style.setProperty('--song-title-top',`${216*uiScale-4*uiExpansion}px`);
  stage.style.setProperty('--story-image-left',`${-350-209.29*uiExpansion}px`);stage.style.setProperty('--story-image-top',`${96.195*uiExpansion}px`);stage.style.setProperty('--story-image-height',`${VIEW.height+202.903*uiExpansion}px`);stage.style.setProperty('--story-text-top',`${126+85.9*uiExpansion}px`);stage.style.setProperty('--story-font',`${Math.max(31.1*uiScale,16/scale)}px`);
  stage.style.setProperty('--native-story-left',`${-350-210*uiExpansion}px`);stage.style.setProperty('--native-story-top',`${96*uiExpansion}px`);stage.style.setProperty('--native-story-height',`${VIEW.height+202.371*uiExpansion}px`);
+ syncStoryLayout();
  stage.style.setProperty('--archive-font',`${Math.max(37.333333,16/scale)}px`);stage.style.setProperty('--archive-heading',`${Math.max(72,28/scale)}px`);
  const inset=Math.max(0,(stageWidth-VIEW.width)*.35);stage.style.setProperty('--ui-inset',`${inset}px`);stage.dataset.uiInset=inset.toFixed(3);
  renderer?.resize(innerWidth,innerHeight,stageWidth,stageHeight);stage.dataset.viewWidth=stageWidth.toFixed(3);stage.dataset.viewHeight=stageHeight.toFixed(3);if(panBounds&&!selectedNode)clampCamera();dirty=true;
+}
+function syncStoryLayout(){
+ const story=storyLayoutAt(stageHeight/stageWidth*1280,archive.artPlacement),unit=stageWidth/1280;
+ for(const key of ['left','right','top','bottom'])stage.style.setProperty(`--story-text-${key}`,`${story.text[key]*unit}px`);
+ stage.style.setProperty('--story-font',`${Math.max(story.text.font*unit,16/scale)}px`);stage.style.setProperty('--story-feather',`${108*unit}px`);
+ stage.style.setProperty('--story-expand-left',`${story.expand.left*unit}px`);stage.style.setProperty('--story-expand-top',`${story.expand.top*unit}px`);stage.style.setProperty('--story-expand-size',`${32*unit}px`);
 }
 function point(event){const rect=stage.getBoundingClientRect();return [(event.clientX-rect.left)/scale,(event.clientY-rect.top)/scale];}
 function sceneTime(now=performance.now()){return boot&&!boot.sceneStarted?0:Math.max(0,(now-(boot?.sceneStarted??renderer?.started??now))/1000);}
@@ -55,7 +65,7 @@ function clickNode(node){
  if(node.type==='song'?!node.image:!node.image&&!node.mapText&&!node.pages?.length)return;
  cancelMotion();selectedNode=node;detailClosing=false;interfaceClosing=null;renderer.hover=null;
  if(node.type!=='song'){
-  archive.open(node,clock,reducedMotion);targets.inert=true;targets.setAttribute('aria-hidden','true');stage.dataset.mode='reader';stage.dataset.detailNode=node.id;stage.dataset.detailPhase='opening';$('back').setAttribute('aria-label','返回地图');$('back').title='返回地图 Esc';return;
+  archive.open(node,clock,reducedMotion);syncStoryLayout();targets.inert=true;targets.setAttribute('aria-hidden','true');stage.dataset.mode='reader';stage.dataset.detailNode=node.id;stage.dataset.detailPhase='opening';$('back').setAttribute('aria-label','返回地图');$('back').title='返回地图 Esc';return;
  }
  renderer.select(node,clock,reducedMotion);
  $('song-title').textContent=node.title;$('song-artist').textContent=node.artist||'';
@@ -86,9 +96,8 @@ function zoom(factor,p=[stageWidth/2,stageHeight/2]){
  if(!renderer||boot?.active||selectedNode)return;cancelMotion();const before=unproject(p,camera,renderer.lean);camera.zoom=Math.max(.7,Math.min(4.6,camera.zoom*factor));const after=unproject(p,camera,renderer.lean);camera.x+=before[0]-after[0];camera.y+=before[1]-after[1];clampCamera();dirty=true;
 }
 function toggleSound(){
- soundOn=!soundOn;const audio=$('ambience');audio.volume=.23;if(soundOn)audio.play().catch(()=>{soundOn=false;updateSound();notify('背景音乐未能播放');});else audio.pause();updateSound();
+ music.toggle();
 }
-function updateSound(){$('sound').setAttribute('aria-label',soundOn?'关闭背景音乐':'开启背景音乐');$('sound').setAttribute('aria-pressed',String(soundOn));}
 function release(event,cancel=false){
  if(!pointers.has(event.pointerId))return;pointers.delete(event.pointerId);if(input.hasPointerCapture(event.pointerId))input.releasePointerCapture(event.pointerId);if(pointers.size)return;
  const current=gesture;gesture=null;input.classList.remove('dragging');
@@ -115,14 +124,15 @@ input.addEventListener('pointermove',event=>{
 input.addEventListener('pointerup',e=>release(e));input.addEventListener('pointercancel',e=>release(e,true));input.addEventListener('pointerleave',()=>{if(!gesture&&renderer){renderer.hover=null;input.classList.remove('over-node');dirty=true;}});
 input.addEventListener('wheel',event=>{event.preventDefault();zoom(Math.exp(-Math.max(-140,Math.min(140,event.deltaY))*.0013),point(event));},{passive:false});
 input.addEventListener('dblclick',event=>{if(renderer&&!renderer.hit(point(event),renderer.camera||camera))reset();});
-$('back').addEventListener('click',()=>selectedNode?closeDetail():reset());$('sound').addEventListener('click',toggleSound);$('fullscreen').addEventListener('click',()=>{if(!document.fullscreenElement)document.documentElement.requestFullscreen().catch(()=>{});else document.exitFullscreen();});
+$('back').addEventListener('click',()=>selectedNode?closeDetail():reset());$('fullscreen').addEventListener('click',()=>{if(!document.fullscreenElement)document.documentElement.requestFullscreen().catch(()=>{});else document.exitFullscreen();});
 document.addEventListener('keydown',event=>{
+ if($('story-art-viewer').open)return;
  const key=event.key.toLowerCase();if(boot?.active&&key!=='f')return;if(key==='r')reset();else if(key==='escape')selectedNode?closeDetail():reset();else if(key==='m')toggleSound();else if(key==='f')$('fullscreen').click();
  else if(!selectedNode&&['arrowleft','arrowright','arrowup','arrowdown'].includes(key)){event.preventDefault();cancelMotion();camera.x+=key==='arrowleft'?-90/camera.zoom:key==='arrowright'?90/camera.zoom:0;camera.y+=key==='arrowup'?-90/camera.zoom:key==='arrowdown'?90/camera.zoom:0;clampCamera();}
  else if(['+','=','-','_'].includes(key))zoom(key==='-'||key==='_'?1/1.12:1.12);
 });
 window.addEventListener('resize',resize);window.addEventListener('blur',()=>{pointers.clear();gesture=null;velocity=[0,0];input.classList.remove('dragging');});
-document.addEventListener('visibilitychange',()=>{if(document.hidden){$('ambience').pause();velocity=[0,0];}else if(soundOn)$('ambience').play().catch(()=>{});});
+document.addEventListener('visibilitychange',()=>{if(document.hidden)velocity=[0,0];});
 
 function frame(now){
  requestAnimationFrame(frame);if(!renderer||document.hidden){lastFrame=now;return;}
@@ -154,7 +164,7 @@ function frame(now){
 async function start(){
  try{
   const response=await fetch('config.json',{cache:'no-store'});if(!response.ok)throw new Error('地图数据无法读取');const data=await response.json();document.title=`${data.title||'穹顶孤舟'} · 地图演示`;scene=buildScene(data);scene.navigation=data.navigation??{};panBounds=navigationBounds(scene,data.navigation);renderer=new MapRenderer($('map-canvas'),scene);
-  boot=new LoadingSequence($('loading'),data.loading,reducedMotion);renderer.entryMode=boot.active?'white':'legacy';renderer.effects=data.effects??{};
+  boot=new LoadingSequence($('loading'),data.loading,reducedMotion);renderer.entryMode=boot.active?'white':'legacy';renderer.effects=data.effects??{};music.configure(data.audio);
   if(data.view?.node){const focus=scene.nodes.find(node=>node.id===data.view.node);if(focus){initial.x=camera.x=focus.center[0];initial.y=camera.y=focus.center[1];}}
   if(data.view){for(const key of ['x','y','zoom'])if(Number.isFinite(data.view[key]))initial[key]=camera[key]=data.view[key];if(Number.isFinite(data.view.lens))initial.lens=camera.lens=Math.max(-.15,Math.min(.08,data.view.lens));}clampCamera();
   for(const node of scene.nodes){const button=document.createElement('button');button.className='node-target';button.setAttribute('aria-label',node.title+(node.unlocked?'':'，未解锁'));button.dataset.id=node.id;button.dataset.vertices=JSON.stringify(node.axial);button.addEventListener('focus',()=>{renderer.hover=node.id;dirty=true;});button.addEventListener('blur',()=>{renderer.hover=null;dirty=true;});button.addEventListener('click',()=>clickNode(node));targets.append(button);buttons.set(node.id,button);}
